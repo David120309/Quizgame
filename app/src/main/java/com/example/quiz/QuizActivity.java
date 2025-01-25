@@ -1,9 +1,11 @@
 package com.example.quiz;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView questions;
@@ -22,6 +27,7 @@ public class QuizActivity extends AppCompatActivity {
     private Timer quizTimer;
     private int seconds = 0;
     private int totalTimeInMins = 1;
+    private final List<QuestionsList> questionsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,75 @@ public class QuizActivity extends AppCompatActivity {
         selectedTopicName.setText(getSelectedTopic);
     }
     private void startTimer (TextView timerTextView) {
-      quizTimer = new Timer();
+
+        quizTimer = new Timer();
+        quizTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if( seconds == 0){
+         ;           totalTimeInMins--;
+                     seconds = 59;
+                }else if (seconds == 0 && totalTimeInMins == 0) {
+                    quizTimer.purge();
+                    quizTimer.cancel();
+
+                    Toast.makeText(QuizActivity.this, "Время вышло", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(QuizActivity.this, QuizResults.class);
+                    intent.putExtra("correct", getCorrectAnswers());
+                    intent.putExtra("incorrect", getInCorrectAnswers());
+
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    seconds --;
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String finalMinutes = String.valueOf(totalTimeInMins);
+                        String finalSeconds = String.valueOf(seconds);
+
+                        if (finalMinutes.length() == 1) {
+                            finalMinutes = "0" + finalMinutes;
+                        }
+                        if (finalSeconds.length() == 1) {
+                            finalSeconds = "0" + finalSeconds;
+                        }
+                        timerTextView.setText(finalMinutes + ":" + finalSeconds);
+                    }
+                });
+
+            }
+        },1000,1000);
+    }
+    private int getCorrectAnswers () {
+       int correctAnswers = 0;
+
+        for (int i = 0; i < questionsList.size() ; i++) {
+            final String getUserSelectedAnswer = questionsList.get(i).getUserSelectedAnswer();
+            final String getAnswer = questionsList.get(i).getAnswer();
+
+            if (getUserSelectedAnswer.equals(getAnswer)) {
+                correctAnswers++;
+            }
+        }
+
+       return correctAnswers;
+    }
+    private int getInCorrectAnswers () {
+        int correctAnswers = 0;
+
+        for (int i = 0; i < questionsList.size() ; i++) {
+            final String getUserSelectedAnswer = questionsList.get(i).getUserSelectedAnswer();
+            final String getAnswer = questionsList.get(i).getAnswer();
+
+            if (!getUserSelectedAnswer.equals(getAnswer)) {
+                correctAnswers++;
+            }
+        }
+
+        return correctAnswers;
     }
 }
