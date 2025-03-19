@@ -3,6 +3,7 @@ package com.example.quiz;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout math = findViewById(R.id.mathLayout);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout country = findViewById(R.id.countryLayout);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout facts = findViewById(R.id.factsLayout);
-        final Button startQuizBtn = findViewById(R.id.startQuizBtn);
+        final AppCompatButton startQuizBtn = findViewById(R.id.startQuizBtn);
 
         football.setOnClickListener(new View.OnClickListener() {
             @Override

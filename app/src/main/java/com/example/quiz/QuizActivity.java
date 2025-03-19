@@ -3,6 +3,7 @@ package com.example.quiz;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +41,9 @@ public class QuizActivity extends AppCompatActivity {
             return insets;
         });
         @SuppressLint({"WrongViewCast", "MissingInflatedId", "LocalSuppress"}) final ImageView backBtn = findViewById(R.id.backBtn);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress", "WrongViewCast"}) final TextView timer = findViewById(R.id.timer);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress", "WrongViewCast"}) final TextView selectedTopicName = findViewById(R.id.selectedTopicName);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress", "WrongViewCast"}) final ImageView timer = findViewById(R.id.timer);
+        final TextView selectedTopicName = findViewById(R.id.selectedTopicName);
+
 
         questions = findViewById(R.id.questions);
         question = findViewById(R.id.question);
@@ -53,6 +55,9 @@ public class QuizActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.nextBtn);
         final String getSelectedTopic = getIntent().getStringExtra("selectedTopic");
         selectedTopicName.setText(getSelectedTopic);
+
+
+
     }
     private void startTimer (TextView timerTextView) {
 
