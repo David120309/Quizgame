@@ -40,9 +40,10 @@ public class QuizActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        @SuppressLint({"WrongViewCast", "MissingInflatedId", "LocalSuppress"}) final ImageView backBtn = findViewById(R.id.backBtn);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress", "WrongViewCast"}) final ImageView timer = findViewById(R.id.timer);
+        final ImageView backBtn = findViewById(R.id.backBtn);
+        final TextView timer = findViewById(R.id.timer);
         final TextView selectedTopicName = findViewById(R.id.selectedTopicName);
+
 
 
         questions = findViewById(R.id.questions);
@@ -56,8 +57,42 @@ public class QuizActivity extends AppCompatActivity {
         final String getSelectedTopic = getIntent().getStringExtra("selectedTopic");
         selectedTopicName.setText(getSelectedTopic);
 
+        startTimer(timer);
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quizTimer.purge();
+                quizTimer.cancel();
 
+                startActivity(new Intent(QuizActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+        option1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        option2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        option3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        option4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
     private void startTimer (TextView timerTextView) {
 
@@ -130,5 +165,15 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         return correctAnswers;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        quizTimer.purge();
+        quizTimer.cancel();
+
+        startActivity(new Intent(QuizActivity.this, MainActivity.class));
+        finish();
     }
 }
