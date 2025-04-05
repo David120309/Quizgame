@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout football = findViewById(R.id.footballLayout);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout math = findViewById(R.id.mathLayout);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout country = findViewById(R.id.countryLayout);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final LinearLayout facts = findViewById(R.id.factsLayout);
+        final LinearLayout football = findViewById(R.id.footballLayout);
+        final LinearLayout math = findViewById(R.id.mathLayout);
+        final LinearLayout country = findViewById(R.id.countryLayout);
+        final LinearLayout facts = findViewById(R.id.factsLayout);
         final AppCompatButton startQuizBtn = findViewById(R.id.startQuizBtn);
 
         football.setOnClickListener(new View.OnClickListener() {

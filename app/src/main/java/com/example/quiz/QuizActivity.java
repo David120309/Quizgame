@@ -1,7 +1,7 @@
 package com.example.quiz;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,7 +15,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,7 +27,10 @@ public class QuizActivity extends AppCompatActivity {
     private Timer quizTimer;
     private int seconds = 0;
     private int totalTimeInMins = 1;
-    private final List<QuestionsList> questionsList = new ArrayList<>();
+    private  List<QuestionsList> questionsList;
+
+    private int currentQuestionPosition = 0;
+    private String selectedOptionByUser = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,16 @@ public class QuizActivity extends AppCompatActivity {
         final String getSelectedTopic = getIntent().getStringExtra("selectedTopic");
         selectedTopicName.setText(getSelectedTopic);
 
+        questionsList = QuestionsBank.qetQuestions(getSelectedTopic);
+
         startTimer(timer);
+
+        questions.setText((currentQuestionPosition+1)+"/"+questionsList.size());
+        question.setText(questionsList.get(0).getQuestion());
+        option1.setText(questionsList.get(0).getOption1());
+        option2.setText(questionsList.get(0).getOption2());
+        option3.setText(questionsList.get(0).getOption3());
+        option4.setText(questionsList.get(0).getOption4());
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,27 +83,71 @@ public class QuizActivity extends AppCompatActivity {
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option1.getText().toString();
+                    option1.setBackgroundResource(R.drawable.round_back_red10);
+                    option1.setTextColor(Color.WHITE);
 
+                    revealAnswer();
+                    questionsList.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
             }
         });
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option2.getText().toString();
+                    option1.setBackgroundResource(R.drawable.round_back_red10);
+                    option1.setTextColor(Color.WHITE);
 
+                    revealAnswer();
+                    questionsList.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
             }
         });
         option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option3.getText().toString();
+                    option3.setBackgroundResource(R.drawable.round_back_red10);
+                    option3.setTextColor(Color.WHITE);
+
+                    revealAnswer();
+                    questionsList.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
 
             }
         });
         option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option4.getText().toString();
+                    option4.setBackgroundResource(R.drawable.round_back_red10);
+                    option4.setTextColor(Color.WHITE);
+
+                    revealAnswer();
+                    questionsList.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
 
             }
         });
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (selectedOptionByUser.isEmpty()) {
+                    Toast.makeText(QuizActivity.this, "dadada", Toast.LENGTH_SHORT).show();
+                } else {
+                    changeNextQuestion();
+                }
+
+            }
+        });
+
+
     }
     private void startTimer (TextView timerTextView) {
 
@@ -175,5 +230,64 @@ public class QuizActivity extends AppCompatActivity {
 
         startActivity(new Intent(QuizActivity.this, MainActivity.class));
         finish();
+    }
+
+    private  void revealAnswer () {
+        final String getAnswer = questionsList.get(currentQuestionPosition).getAnswer();
+
+        if (option1.getText().toString().equals(getAnswer)) {
+            option1.setBackgroundResource(R.drawable.round_back_green10);
+            option1.setTextColor(Color.WHITE);
+
+        } else if (option2.getText().toString().equals(getAnswer)) {
+            option2.setBackgroundResource(R.drawable.round_back_green10);
+            option2.setTextColor(Color.WHITE);
+
+        } else if (option3.getText().toString().equals(getAnswer)) {
+            option3.setBackgroundResource(R.drawable.round_back_green10);
+            option3.setTextColor(Color.WHITE);
+
+        } else if (option4.getText().toString().equals(getAnswer)) {
+            option4.setBackgroundResource(R.drawable.round_back_green10);
+            option4.setTextColor(Color.WHITE);
+
+        }
+
+    }
+    private void changeNextQuestion () {
+        currentQuestionPosition++;
+
+        if ((currentQuestionPosition+1 ) == questionsList.size()) {
+            nextBtn.setText("Finish");
+        }
+        if (currentQuestionPosition < questionsList.size()) {
+            selectedOptionByUser = "";
+            option1.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option1.setTextColor(Color.parseColor("#1F6BB8"));
+
+            option2.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option2.setTextColor(Color.parseColor("#1F6BB8"));
+
+            option3.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option3.setTextColor(Color.parseColor("#1F6BB8"));
+
+            option4.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option4.setTextColor(Color.parseColor("#1F6BB8"));
+
+            questions.setText((currentQuestionPosition+1)+"/"+questionsList.size());
+            question.setText(questionsList.get(currentQuestionPosition).getQuestion());
+            option1.setText(questionsList.get(currentQuestionPosition).getOption1());
+            option2.setText(questionsList.get(currentQuestionPosition).getOption2());
+            option3.setText(questionsList.get(currentQuestionPosition).getOption3());
+            option4.setText(questionsList.get(currentQuestionPosition).getOption4());
+        }
+        else {
+            Intent intent = new Intent(QuizActivity.this, QuizResults.class);
+            intent.putExtra("correct", getCorrectAnswers());
+            intent.putExtra("incorrect", getInCorrectAnswers());
+
+            startActivity(intent);
+            finish();
+        }
     }
 }
