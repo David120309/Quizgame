@@ -17,7 +17,7 @@ public class QuestionsBank {
                 "11",
                 "12",
                 "9",
-                "10", "");
+                "11", "");
         final QuestionsList question3 = new QuestionsList("Кто является лучшим бомбардиром Лиги чемпионов УЕФА?",
                 "Лионель Месси" ,
                 "Криштиану Роналду",
@@ -30,7 +30,7 @@ public class QuestionsBank {
                 "Килиан Мбаппе",
                 "Криштиану Роналду",
                 "Роберт Левандовски", "");
-        final QuestionsList question5 = new QuestionsList("Как называется знаменитый стадион \"Челси\"?",
+        final QuestionsList question5 = new QuestionsList("Как называется знаменитый стадион Челси?",
                 "Олд Траффорд",
                 "Стэмфорд Бридж",
                 "Сигнал Идуна Парк",
