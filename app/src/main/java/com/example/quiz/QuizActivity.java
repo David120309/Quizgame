@@ -191,7 +191,7 @@ public class QuizActivity extends AppCompatActivity {
                 });
 
             }
-        },1000,1000);
+        },3000,3000);
     }
     private int getCorrectAnswers () {
        int correctAnswers = 0;
