@@ -5,72 +5,134 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/gradient_background"
     tools:context=".QuizResults">
 
-    <ImageView
-        android:id="@+id/congratulationIcon"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/resultsCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="40dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/trophy"
-        />
-    <TextView
-        android:id="@+id/succesTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:layout_below="@+id/congratulationIcon"
-        android:text="Ваш результат:"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        />
-    <LinearLayout
-        android:layout_below="@+id/succesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_centerInParent="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
 
-        <TextView
-            android:id="@+id/correctAnswers"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Количество неправильных ответов: 0"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#00C855"
-            />
-        <TextView
-            android:id="@+id/incorrectAnswers"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Количество неправильных ответов: 0"
-            android:textStyle="bold"
-            android:textColor="#DD2C00"
-            />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-    </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
+            <ImageView
+                android:id="@+id/congratulationIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:src="@drawable/trophy"
+                app:tint="@color/gold" />
+
+            <TextView
+                android:id="@+id/congratsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="Поздравляем!"
+                android:textColor="@color/primary"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/succesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Ваш результат:"
+                android:textColor="@color/text_primary"
+                android:textSize="22sp" />
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/accent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/round_light_background"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+
+
+                <TextView
+                    android:id="@+id/correctAnswers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="32dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Правильных ответов: 0"
+                    android:textColor="#00C855"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/round_light_background"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+
+
+                <TextView
+                    android:id="@+id/incorrectAnswers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="32dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Неправильных ответов: 0"
+                    android:textColor="#DD2C00"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/startNewQuizBtn"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Начать новую викторину"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:background="@drawable/round_back_green20"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Начать новую викторину"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:backgroundTint="@color/primary"
+        app:cornerRadius="28dp"
+        app:elevation="4dp" />
 
-        />
+
 
 </RelativeLayout>
+
+
+
+
