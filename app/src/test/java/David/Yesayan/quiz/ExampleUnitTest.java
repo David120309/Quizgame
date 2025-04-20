@@ -1,4 +1,4 @@
-package com.example.quiz;
+package David.Yesayan.quiz;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.quiz;
+package David.Yesayan.quiz;
 
 public class QuestionsList {
     private String option1, option2, option3, option4, question, answer;

@@ -13,13 +13,13 @@
         android:theme="@style/Theme.Quiz"
         tools:targetApi="31">
         <activity
-            android:name=".QuizResults"
+            android:name="David.Yesayan.quiz.QuizResults"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name="David.Yesayan.quiz.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="David.Yesayan.quiz.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

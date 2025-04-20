@@ -1,4 +1,4 @@
-package com.example.quiz;
+package David.Yesayan.quiz;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.quiz.R;
 
 public class QuizResults extends AppCompatActivity {
 

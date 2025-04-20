@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F5F7FA"
-    tools:context=".MainActivity">
+    tools:context="David.Yesayan.quiz.MainActivity">
 
     <!-- Стильный заголовок с акцентным элементом -->
     <RelativeLayout

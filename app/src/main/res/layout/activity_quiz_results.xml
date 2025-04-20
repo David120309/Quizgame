@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".QuizResults">
+    tools:context="David.Yesayan.quiz.QuizResults">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/resultsCardView"
